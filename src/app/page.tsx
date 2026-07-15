@@ -11,9 +11,14 @@ import {
   ReceiptText,
   ShieldCheck,
 } from "lucide-react";
+import Link from "next/link";
 import { PaycheckCalculator } from "@/features/calculator/PaycheckCalculator";
 import { calculatePaycheck } from "@/features/calculator/tax";
-import { BrandLogo } from "@/shared/components/BrandLogo";
+import { CalculatorAction } from "@/shared/components/CalculatorAction";
+import { LegacyHashRouter } from "@/shared/components/LegacyHashRouter";
+import { SiteFooter } from "@/shared/components/SiteFooter";
+import { SiteHeader } from "@/shared/components/SiteHeader";
+import { faqs } from "@/shared/content/site";
 
 const salaryExamples = [50_000, 75_000, 100_000, 150_000, 200_000].map(
   (salary) => {
@@ -67,34 +72,6 @@ const taxLayers = [
   },
 ];
 
-const faqs = [
-  {
-    question: "Does New York City really have its own income tax?",
-    answer:
-      "Yes. Full-year residents of Manhattan, Brooklyn, Queens, the Bronx, and Staten Island generally pay NYC resident income tax, even if they work outside the city. Most nonresidents who commute into NYC do not pay the city resident tax.",
-  },
-  {
-    question: "Why is this different from the amount on my pay stub?",
-    answer:
-      "This tool estimates annual tax liability and spreads it across your selected pay periods. Actual employer withholding uses your W-4 and IT-2104 elections and can include dependents, credits, benefits, garnishments, multiple jobs, and employer-specific payroll timing.",
-  },
-  {
-    question: "Do pre-tax deductions reduce every tax?",
-    answer:
-      "Not always. Traditional 401(k) contributions generally reduce income taxes but still face Social Security and Medicare tax. Some benefits, such as eligible HSA or FSA deductions made through payroll, may also reduce FICA. This estimate takes the conservative approach and leaves FICA on gross wages.",
-  },
-  {
-    question: "Which 2026 updates are included?",
-    answer:
-      "The calculator includes the IRS 2026 federal brackets and standard deductions, the $184,500 Social Security wage base, New York's 2026 rate reduction for lower and middle brackets, and current NYC resident rates.",
-  },
-  {
-    question: "Can I use this to make a tax filing decision?",
-    answer:
-      "Use it for planning and job-offer comparisons, not as a return or professional tax opinion. It omits itemized deductions, dependents, most credits, bonuses, stock compensation, multiple jobs, and New York's high-income recapture calculations.",
-  },
-];
-
 export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
@@ -115,38 +92,11 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      <LegacyHashRouter />
 
-      <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <a href="#top" aria-label="NYC Paycheck Calculator home">
-            <BrandLogo compact />
-          </a>
+      <SiteHeader />
 
-          <nav aria-label="Main navigation" className="hidden items-center gap-7 md:flex">
-            <a className="text-sm text-stone-600 hover:text-stone-950" href="#taxes">
-              Tax layers
-            </a>
-            <a className="text-sm text-stone-600 hover:text-stone-950" href="#salaries">
-              Salary guide
-            </a>
-            <a className="text-sm text-stone-600 hover:text-stone-950" href="#methodology">
-              Methodology
-            </a>
-            <a className="text-sm text-stone-600 hover:text-stone-950" href="#faq">
-              FAQ
-            </a>
-          </nav>
-
-          <a
-            href="#calculator"
-            className="inline-flex min-h-10 items-center justify-center rounded-xl bg-stone-950 px-4 text-sm font-semibold text-white hover:bg-stone-800"
-          >
-            Calculate
-          </a>
-        </div>
-      </header>
-
-      <main id="top">
+      <main>
         <section className="border-b border-stone-200">
           <div className="mx-auto max-w-7xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-24 lg:px-8 lg:pt-28">
             <div className="mx-auto mb-12 max-w-4xl text-center sm:mb-16">
@@ -161,13 +111,12 @@ export default function Home() {
                 A clearer NYC paycheck estimate—from gross salary to take-home pay
                 after federal, state, city, and payroll taxes.
               </p>
-              <a
-                href="#calculator"
+              <CalculatorAction
                 className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800 hover:text-emerald-950"
               >
                 Start with your salary
                 <ArrowDown className="size-4" aria-hidden="true" />
-              </a>
+              </CalculatorAction>
             </div>
 
             <PaycheckCalculator />
@@ -196,7 +145,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="taxes" className="scroll-mt-20 bg-white py-20 sm:py-28">
+        <section className="bg-white py-20 sm:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
               <div>
@@ -234,10 +183,17 @@ export default function Home() {
                 );
               })}
             </div>
+            <Link
+              href="/nyc-income-tax-guide/"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800 hover:text-emerald-950"
+            >
+              Read the complete NYC income tax guide
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
           </div>
         </section>
 
-        <section id="salaries" className="scroll-mt-20 border-y border-stone-200 py-20 sm:py-28">
+        <section className="border-y border-stone-200 py-20 sm:py-28">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-sm font-semibold text-emerald-700">Salary snapshots</p>
@@ -283,10 +239,17 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
+            <Link
+              href="/nyc-salary-guide/"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800 hover:text-emerald-950"
+            >
+              Explore the full NYC salary guide
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
           </div>
         </section>
 
-        <section id="methodology" className="scroll-mt-20 bg-stone-950 py-20 text-white sm:py-28">
+        <section className="bg-stone-950 py-20 text-white sm:py-28">
           <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-5">
               <p className="mb-3 text-sm font-semibold text-emerald-400">Methodology</p>
@@ -345,11 +308,18 @@ export default function Home() {
                   </a>
                 </div>
               </div>
+              <Link
+                href="/paycheck-calculator-methodology/"
+                className="inline-flex items-center gap-2 pt-3 text-sm font-semibold text-emerald-400 hover:text-emerald-300"
+              >
+                Review the full calculation methodology
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>
 
-        <section id="faq" className="scroll-mt-20 bg-white py-20 sm:py-28">
+        <section className="bg-white py-20 sm:py-28">
           <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
             <div className="lg:col-span-4">
               <p className="mb-3 text-sm font-semibold text-emerald-700">Good to know</p>
@@ -372,6 +342,13 @@ export default function Home() {
                   </p>
                 </details>
               ))}
+              <Link
+                href="/nyc-paycheck-calculator-faq/"
+                className="inline-flex items-center gap-2 py-5 text-sm font-semibold text-emerald-800 hover:text-emerald-950"
+              >
+                View all calculator questions
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>
@@ -384,38 +361,17 @@ export default function Home() {
                 A salary number is only useful when you know what you keep.
               </h2>
             </div>
-            <a
-              href="#calculator"
+            <CalculatorAction
               className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-xl bg-stone-950 px-5 text-sm font-semibold text-white hover:bg-stone-800"
             >
               Calculate take-home
               <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
+            </CalculatorAction>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-stone-200 bg-stone-100">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <div className="flex flex-col justify-between gap-8 sm:flex-row">
-            <div>
-              <BrandLogo className="mb-3" />
-              <p className="max-w-md text-pretty text-xs leading-5 text-stone-500">
-                Educational estimates only. This site does not provide tax, legal, or
-                financial advice. Consult a qualified professional for personal guidance.
-              </p>
-            </div>
-            <div className="flex gap-6 text-sm text-stone-600">
-              <a href="#methodology" className="hover:text-stone-950">Methodology</a>
-              <a href="#faq" className="hover:text-stone-950">FAQ</a>
-              <a href="#calculator" className="hover:text-stone-950">Calculator</a>
-            </div>
-          </div>
-          <div className="mt-8 border-t border-stone-200 pt-6 text-xs text-stone-500">
-            © 2026 NYC Paycheck Calculator · Built for New Yorkers.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
