@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { PaycheckCalculator } from "@/features/calculator/PaycheckCalculator";
 import { calculatePaycheck } from "@/features/calculator/tax";
+import { BrandLogo } from "@/shared/components/BrandLogo";
 
 const salaryExamples = [50_000, 75_000, 100_000, 150_000, 200_000].map(
   (salary) => {
@@ -98,13 +99,14 @@ export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Paycheck.NYC 2026 Paycheck Calculator",
+    name: "NYC Paycheck Calculator",
     url: "https://nycpaycheckcalculator.site",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Any",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     description:
-      "Estimate NYC take-home pay after federal, New York State, New York City, and FICA taxes.",
+      "Calculate 2026 NYC take-home pay after federal, New York State, New York City, and FICA taxes.",
+    image: "https://nycpaycheckcalculator.site/logo.svg",
   };
 
   return (
@@ -116,13 +118,8 @@ export default function Home() {
 
       <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <a href="#top" className="flex items-center gap-2.5" aria-label="Paycheck NYC home">
-            <span className="flex size-9 items-center justify-center rounded-xl bg-stone-950 text-xs font-bold text-emerald-400">
-              NY
-            </span>
-            <span className="text-sm font-semibold text-stone-950 sm:text-base">
-              Paycheck<span className="text-emerald-700">.NYC</span>
-            </span>
+          <a href="#top" aria-label="NYC Paycheck Calculator home">
+            <BrandLogo compact />
           </a>
 
           <nav aria-label="Main navigation" className="hidden items-center gap-7 md:flex">
@@ -402,14 +399,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex flex-col justify-between gap-8 sm:flex-row">
             <div>
-              <div className="mb-3 flex items-center gap-2.5">
-                <span className="flex size-9 items-center justify-center rounded-xl bg-stone-950 text-xs font-bold text-emerald-400">
-                  NY
-                </span>
-                <span className="text-base font-semibold text-stone-950">
-                  Paycheck<span className="text-emerald-700">.NYC</span>
-                </span>
-              </div>
+              <BrandLogo className="mb-3" />
               <p className="max-w-md text-pretty text-xs leading-5 text-stone-500">
                 Educational estimates only. This site does not provide tax, legal, or
                 financial advice. Consult a qualified professional for personal guidance.
@@ -422,7 +412,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 border-t border-stone-200 pt-6 text-xs text-stone-500">
-            © 2026 Paycheck.NYC · Built for New Yorkers.
+            © 2026 NYC Paycheck Calculator · Built for New Yorkers.
           </div>
         </div>
       </footer>
