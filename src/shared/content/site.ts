@@ -3,6 +3,9 @@ export const siteUrl = "https://nycpaycheckcalculator.site";
 export const primaryNavigation = [
   { label: "Tax guide", href: "/nyc-income-tax-guide/" },
   { label: "Salary guide", href: "/nyc-salary-guide/" },
+  { label: "Minimum wage", href: "/nyc-minimum-wage-guide/" },
+  { label: "Affordable housing", href: "/nyc-affordable-housing-guide/" },
+  { label: "Teacher salary", href: "/nyc-doe-teacher-salary-guide/" },
   { label: "Methodology", href: "/paycheck-calculator-methodology/" },
   { label: "FAQ", href: "/nyc-paycheck-calculator-faq/" },
 ];
@@ -32,5 +35,15 @@ export const faqs = [
     question: "Can I use this to make a tax filing decision?",
     answer:
       "Use it for planning and job-offer comparisons, not as a return or professional tax opinion. It omits itemized deductions, dependents, most credits, bonuses, stock compensation, multiple jobs, and New York's high-income recapture calculations.",
+  },
+  {
+    question: "Is this the same as a payroll or pay stub calculator?",
+    answer:
+      "It works like one, but it isn't connected to any employer's payroll system. A real payroll run applies your actual W-4 and IT-2104 elections, benefit deductions, and pay-period timing, so the wage and tax lines on your pay stub won't match this estimate exactly. Use this tool to sanity-check a pay stub or model a new offer before payroll ever runs it.",
+  },
+  {
+    question: "What's the difference between net pay and take-home pay?",
+    answer:
+      "Nothing — they're the same number described two ways. Net pay, take-home pay, and salary take-home all mean gross wages minus federal, state, city, and FICA taxes and any pre-tax deductions. This calculator reports that figure per paycheck and per year.",
   },
 ];

@@ -26,6 +26,9 @@ export function SiteFooter() {
                 {item.label}
               </Link>
             ))}
+            <Link href="/blog/" className="hover:text-stone-950">
+              Blog
+            </Link>
             <CalculatorAction className="cursor-pointer bg-transparent p-0 text-sm text-stone-600 hover:text-stone-950">
               Calculator
             </CalculatorAction>

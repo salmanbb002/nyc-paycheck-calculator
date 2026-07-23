@@ -1,5 +1,8 @@
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GuidePage } from "@/shared/components/GuidePage";
+import { CalculatorAction } from "@/shared/components/CalculatorAction";
 import { createArticleJsonLd, createPageMetadata } from "@/shared/lib/seo";
 
 const path = "/nyc-income-tax-guide/";
@@ -97,6 +100,33 @@ export default function NycIncomeTaxGuide() {
             Pre-tax contributions can reduce income-tax wages, while Social Security and
             Medicare may still apply. Actual withholding can also change with W-4 and
             IT-2104 elections, dependents, credits, bonuses, and multiple jobs.
+          </p>
+        </section>
+
+        <section className="rounded-3xl bg-emerald-50 p-7 sm:p-9">
+          <h2 className="text-2xl font-semibold text-stone-950">
+            Turn these brackets into a dollar figure
+          </h2>
+          <p className="mt-4 max-w-2xl text-pretty leading-7 text-stone-600">
+            Rates and rules only answer half the question. The NYC tax calculator on
+            the homepage applies every bracket above to your actual salary, pay
+            schedule, filing status, and pre-tax contributions, and returns your
+            estimated take-home pay per check and per year.
+          </p>
+          <CalculatorAction className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-emerald-800 hover:text-emerald-950">
+            Open the tax calculator
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </CalculatorAction>
+          <p className="mt-6 text-pretty text-sm leading-6 text-stone-600">
+            For a full walkthrough of how these brackets combine into a real
+            paycheck, read{" "}
+            <Link
+              href="/blog/salary-vs-take-home-pay-nyc/"
+              className="font-semibold text-emerald-800 hover:text-emerald-950"
+            >
+              Salary vs. take-home pay in NYC
+            </Link>{" "}
+            on the blog.
           </p>
         </section>
 

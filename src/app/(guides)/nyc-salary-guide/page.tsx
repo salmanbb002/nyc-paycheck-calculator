@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { calculatePaycheck } from "@/features/calculator/tax";
 import { GuidePage } from "@/shared/components/GuidePage";
 import { createArticleJsonLd, createPageMetadata } from "@/shared/lib/seo";
@@ -56,8 +57,9 @@ export default function NycSalaryGuide() {
           </h2>
           <p className="mt-4 max-w-3xl text-pretty leading-7 text-stone-600">
             The table uses 26 pay periods per year and estimates federal, New York State,
-            New York City, Social Security, and Medicare taxes. It is designed for salary
-            comparisons rather than exact payroll withholding.
+            New York City, Social Security, and Medicare taxes. Think of it as a net
+            salary calculator for common income levels—gross in, net salary out—rather
+            than a substitute for exact payroll withholding.
           </p>
 
           <div className="mt-8 overflow-x-auto rounded-2xl border border-stone-200 bg-white shadow-sm">
@@ -111,6 +113,20 @@ export default function NycSalaryGuide() {
 
         <section>
           <h2 className="text-3xl font-semibold text-stone-950">
+            Using this as a New York State salary calculator, not just an NYC one
+          </h2>
+          <p className="mt-4 max-w-3xl text-pretty leading-7 text-stone-600">
+            Every row above includes New York City resident tax. If you work in the
+            five boroughs but live elsewhere in New York State—Westchester, Long
+            Island, or upstate—drop that one line. The federal and New York State
+            brackets still apply to any New York worker, so the same gross-to-net
+            math works as a New York State salary calculator once the city tax is
+            removed.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-semibold text-stone-950">
             Why two people with the same salary can take home different amounts
           </h2>
           <p className="mt-4 text-pretty leading-7 text-stone-600">
@@ -127,6 +143,16 @@ export default function NycSalaryGuide() {
             These figures use simplified annual calculations. Your employer’s payroll
             system follows withholding elections and may produce a different check amount.
             Enter your own details in the calculator for a more relevant estimate.
+          </p>
+          <p className="mt-4 text-pretty leading-7 text-stone-300">
+            For a plain-language walkthrough of why gross and net pay diverge, read{" "}
+            <Link
+              href="/blog/salary-vs-take-home-pay-nyc/"
+              className="font-semibold text-emerald-400 hover:text-emerald-300"
+            >
+              Salary vs. take-home pay in NYC
+            </Link>{" "}
+            on the blog.
           </p>
         </section>
       </GuidePage>

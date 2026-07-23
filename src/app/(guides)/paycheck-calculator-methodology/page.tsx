@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GuidePage } from "@/shared/components/GuidePage";
+import { siteUrl } from "@/shared/content/site";
 import { createArticleJsonLd, createPageMetadata } from "@/shared/lib/seo";
 
 const path = "/paycheck-calculator-methodology/";
@@ -38,12 +40,28 @@ const steps = [
 
 export default function MethodologyPage() {
   const structuredData = createArticleJsonLd({ title, description, path });
+  const howToStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How the NYC paycheck calculator estimates take-home pay",
+    description,
+    step: steps.map((step) => ({
+      "@type": "HowToStep",
+      name: step.title,
+      text: step.text,
+      url: `${siteUrl}${path}`,
+    })),
+  };
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }}
       />
       <GuidePage
         currentPath={path}
@@ -84,6 +102,32 @@ export default function MethodologyPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-semibold text-stone-950">
+            How this compares to your actual pay stub
+          </h2>
+          <p className="mt-4 max-w-3xl text-pretty leading-7 text-stone-600">
+            Your employer&rsquo;s payroll system and this calculator start from the same
+            wage and run the same four tax layers, but a real pay stub can diverge for
+            reasons this estimate does not see: your specific W-4 and IT-2104
+            elections, a mid-year raise, overtime or bonus pay processed on a separate
+            supplemental rate, employer-sponsored health premiums, a 401(k) match, or a
+            wage garnishment. If your pay stub&rsquo;s net wages differ from this
+            estimate, the gap is almost always one of those payroll-specific inputs,
+            not an error in either calculation.
+          </p>
+          <p className="mt-4 max-w-3xl text-pretty leading-7 text-stone-600">
+            For a full breakdown of each deduction with a worked example, read{" "}
+            <Link
+              href="/blog/salary-vs-take-home-pay-nyc/"
+              className="font-semibold text-emerald-800 hover:text-emerald-950"
+            >
+              Salary vs. take-home pay in NYC
+            </Link>{" "}
+            on the blog.
+          </p>
         </section>
 
         <section className="rounded-3xl bg-stone-950 p-7 text-white sm:p-9">

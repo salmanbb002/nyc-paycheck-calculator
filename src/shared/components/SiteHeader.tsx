@@ -11,11 +11,14 @@ export function SiteHeader() {
           <BrandLogo compact />
         </Link>
 
-        <nav aria-label="Main navigation" className="hidden items-center gap-7 md:flex">
+        <nav
+          aria-label="Main navigation"
+          className="hidden items-center gap-5 overflow-x-auto xl:flex xl:gap-6"
+        >
           {primaryNavigation.map((item) => (
             <Link
               key={item.href}
-              className="text-sm text-stone-600 hover:text-stone-950"
+              className="whitespace-nowrap text-sm text-stone-600 hover:text-stone-950"
               href={item.href}
             >
               {item.label}

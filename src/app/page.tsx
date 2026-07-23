@@ -155,9 +155,11 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-xl text-pretty text-base leading-7 text-stone-600 lg:justify-self-end">
-                New Yorkers see more deductions than most workers. The calculator
-                separates each layer so you can understand the difference between a
-                headline salary and usable income.
+                New Yorkers see more deductions on every pay stub than most workers.
+                The calculator separates each payroll line—federal, state, city, and
+                FICA—so you can compare a headline salary against the wage that
+                actually lands, the same math your employer&rsquo;s payroll system runs
+                behind the scenes.
               </p>
             </div>
 
